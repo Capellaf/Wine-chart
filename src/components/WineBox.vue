@@ -54,6 +54,9 @@ export default {
     },
 
     computed: {
+        isMobile() {
+          return this.$store.getters.isMobile;
+        },
         getState() {
             return this.state;
         },
@@ -113,10 +116,10 @@ body{
 .sidebar_panel {
   overflow: hidden;
   background-color: var(--light);
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
-  height: 100vh;
+  height: 100%;
   z-index: 999;
   padding: 0;
   width: 352px;
@@ -210,6 +213,7 @@ body{
   margin-bottom: 20px;
   align-content: center;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .no_items {
