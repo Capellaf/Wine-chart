@@ -50,7 +50,7 @@ export default {
       return this.$store.getters.isMobile;
     },
     getItemsQuantity() {
-      return this.$store.state.itemsQuantity;
+      return this.$store.state.chart.length > 0 ? this.$store.state.chart.reduce((total, item) => total + item.quantity, 0) : 0;
     },
     getOpenWineBox() {
       return this.openWineBox;
