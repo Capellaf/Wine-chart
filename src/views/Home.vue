@@ -4,7 +4,7 @@
             <img v-if="!isMobile" alt="Banner" src="../assets/banner.svg">
             <img v-else alt="BannerMobile" src="../assets/banner_mobile.svg">
         </span>
-        <div class="wine_div">
+        <div :class="[{'wine_div': true}, {'mobile_wine_div': isMobile}]">
             <section class="wine_section" v-for="(item, idx) in getWineList" :key="idx">
                 <wine-card :wine="item"></wine-card>
             </section>
@@ -60,12 +60,23 @@ export default {
     justify-items: center;
 }
 
+.container_mobile {
+    max-height: 100%;
+}
+
 .banner {
     margin-bottom: 50px;
 }
 
 .wine_div {
     display: flex;
+    width: 1180px;
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.mobile_wine_div {
+    max-width: 326px;
 }
 
 .wine_section {

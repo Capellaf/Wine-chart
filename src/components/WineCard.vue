@@ -45,7 +45,7 @@
                 <br>
                 <span class="wine_no_member_price">NÃO SÓCIO R$ {{getWinePromoPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span>
             </div>
-            <button v-if="getWineAvailable" class="add_product">Adicionar Produto</button>
+            <button v-if="getWineAvailable" class="add_product" @click="addProduct">Adicionar Produto</button>
             <button v-else class="no_available_btn">Esgotado</button>
         </div>
     </div>
@@ -88,6 +88,7 @@ export default {
 
     methods: {
         addProduct() {
+            console.log('aqui')
             const itemsChart = this.$store.state.chart;
             const repetitiveItemIndex = itemsChart.findIndex(item => item.name === this.wine.name); //Verifica se vinho já está no carrinho
             if (repetitiveItemIndex < 0) this.$store.state.chart.push({...this.wine, quantity: 1}); //Adiciona novo vinho
