@@ -47,6 +47,9 @@ export default {
   --disabled: #A0A0A0;
   --success: #7FBC44;
   --darkgray: #888888;
+  --division: #d5d5d5;
+  --title: #1D1D1B;
+  --close: #979797;
 }
 
 #app {

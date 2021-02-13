@@ -1,5 +1,9 @@
 <template>
   <div class="container">
+    <wine-box 
+      :state="getOpenWineBox"
+      @closeWineBox="toggleWineBox"
+    ></wine-box>
     <div class="navbar_menu">
       <section class="section_navbar_menu">
         <img alt="Wine" class="nav_menu" src="https://img.wine.com.br/logo/wine/black/wine.svg">
@@ -12,7 +16,7 @@
         </ul>
       </section>
       <section class="section_navbar_menu">
-        <div class="wine_chart">
+        <div class="wine_chart" @click="toggleWineBox">
           <img src="../assets/wineBox_wrap.svg">
           <span class="chart_number">{{getItemsQuantity}}</span>
         </div>
@@ -22,10 +26,23 @@
 </template>
 
 <script>
+import WineBox from './WineBox'
+
 export default {
   name: 'NavBar',
+
+  components: {
+    WineBox
+  },
+
   props: {
     msg: String
+  },
+
+  data() {
+    return {
+      openWineBox: false
+    }
   },
 
   computed: {
@@ -34,6 +51,15 @@ export default {
     },
     getItemsQuantity() {
       return this.$store.state.itemsQuantity;
+    },
+    getOpenWineBox() {
+      return this.openWineBox;
+    }
+  },
+
+  methods: {
+    toggleWineBox() {
+      this.$set(this, 'openWineBox', !this.openWineBox);
     }
   }
 }
@@ -81,6 +107,7 @@ export default {
 
 .wine_chart {
   right: 0;
+  cursor: pointer;
 }
 
 .chart_number {
