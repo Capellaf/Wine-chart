@@ -88,12 +88,12 @@ export default {
 
     methods: {
         addProduct() {
-            console.log('aqui')
             const itemsChart = this.$store.state.chart;
             const repetitiveItemIndex = itemsChart.findIndex(item => item.name === this.wine.name); //Verifica se vinho já está no carrinho
             if (repetitiveItemIndex < 0) this.$store.state.chart.push({...this.wine, quantity: 1}); //Adiciona novo vinho
             else this.$store.state.chart[repetitiveItemIndex].quantity += 1; //Aumenta quantidade de existente
             this.$store.state.itemsQuantity += 1;
+            this.$emit('addProduct');
         }
     }
 }
