@@ -1,12 +1,13 @@
 <template>
     <div class="container">
+        <feedback-modal :state="getFeedbackModalState" @closeModal="toggleFeedback"></feedback-modal>
         <span class="banner">
             <img v-if="!isMobile" alt="Banner" src="../assets/banner.svg">
             <img v-else alt="BannerMobile" src="../assets/banner_mobile.svg">
         </span>
         <div :class="[{'wine_div': true}, {'mobile_wine_div': isMobile}]">
             <section class="wine_section" v-for="(item, idx) in getWineList" :key="idx">
-                <wine-card :wine="item"></wine-card>
+                <wine-card :wine="item" @addProduct="toggleFeedback"></wine-card>
             </section>
         </div>
     </div>
@@ -15,11 +16,13 @@
 <script>
 const axios = require('axios');
 import WineCard from '../components/WineCard.vue'
+import FeedbackModal from '../components/FeedbackModal'
 
 export default {
     data() {
         return {
-            wineList: []
+            wineList: [],
+            feedbackModal: false
         }
     },
 
@@ -28,7 +31,8 @@ export default {
     },
 
     components: {
-        WineCard
+        WineCard,
+        FeedbackModal
     },
 
     computed: {
@@ -37,6 +41,9 @@ export default {
         },
         getWineList() {
             return this.wineList;
+        },
+        getFeedbackModalState() {
+            return this.feedbackModal;
         }
     },
 
@@ -48,6 +55,9 @@ export default {
             } catch (error) {
                 console.log('getWineList: ', error);
             }
+        },
+        toggleFeedback() {
+            this.$set(this, 'feedbackModal', !this.feedbackModal)
         }
     }
 }
