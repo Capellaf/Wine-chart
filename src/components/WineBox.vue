@@ -58,11 +58,10 @@ export default {
             return this.state;
         },
         getItemsQuantity() {
-          return this.$store.state.itemsQuantity;
+          return this.$store.state.chart.reduce((total, item) => total + item.quantity, 0);
         },
-        getTotalValue() {
-          if (this.getItemsQuantity < 1) return 0;        
-          return this.$store.state.chart.reduce((total, item) => total + (item.quantity * item.price), 0);
+        getTotalValue() {    
+          return this.$store.state.chart.length > 0 ? this.$store.state.chart.reduce((total, item) => total + (item.quantity * (item.pricePromotional > 0 ? item.pricePromotional : item.priceStock)), 0) : 0;
         },
         getTotalDecimal() {
           const total = this.getTotalValue;

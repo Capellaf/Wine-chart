@@ -18,7 +18,7 @@
                     </span>
                 </span>
             </div>
-            <button v-if="getWineAvailable" class="add_product">Adicionar Produto</button>
+            <button v-if="getWineAvailable" class="add_product" @click="addProduct">Adicionar Produto</button>
             <button v-else class="no_available_btn" disabled>Esgotado</button>
         </div>
     </div>
@@ -83,6 +83,16 @@ export default {
         getWineMemberPriceDecimal() {
           const total = this.getWineMemberPrice;
           return getDecimalValue(total);
+        }
+    },
+
+    methods: {
+        addProduct() {
+            const itemsChart = this.$store.state.chart;
+            const repetitiveItemIndex = itemsChart.findIndex(item => item.name === this.wine.name); //Verifica se vinho já está no carrinho
+            if (repetitiveItemIndex < 0) this.$store.state.chart.push({...this.wine, quantity: 1}); //Adiciona novo vinho
+            else this.$store.state.chart[repetitiveItemIndex].quantity += 1; //Aumenta quantidade de existente
+            this.$store.state.itemsQuantity += 1;
         }
     }
 }

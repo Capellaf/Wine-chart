@@ -4,13 +4,13 @@
         <div class="info">
             <div class="row">
                 <span class="wine_title">{{getWineInfo.name}}</span>
-                <span class="delete_btn">X</span>
+                <span class="delete_btn" @click="deleteProduct">X</span>
             </div>
             <div class="row">
                 <span class="quantity_control">
-                    <button class="quantity_control_btn" :disabled="getWineInfo.quantity < 2">-</button>
+                    <button class="quantity_control_btn" :disabled="getWineInfo.quantity < 2" @click="removeProduct">-</button>
                     <span>{{getWineInfo.quantity}}</span>
-                    <button class="quantity_control_btn">+</button>
+                    <button class="quantity_control_btn" @click="addProduct">+</button>
                 </span>
                 <span class="values_slot">
                     <span class="total_values">
@@ -39,13 +39,28 @@ export default {
             return this.wine;
         },
         getWinePrice() {
-            return this.wine.quantity * this.wine.price;
+            return this.wine.quantity * this.wine.pricePromotional > 0 ? this.wine.pricePromotional : this.wine.priceStock;
         },
         getWinePriceDecimal() {
           const price = this.getWinePrice;
           return getDecimalValue(price);
         }
-    }
+    },
+
+    methods: {
+        addProduct() {
+            const repetitiveItemIndex = this.$store.state.chart.findIndex(item => item.name === this.wine.name);
+            this.$store.state.chart[repetitiveItemIndex].quantity += 1;
+        },
+        removeProduct() {
+            const repetitiveItemIndex = this.$store.state.chart.findIndex(item => item.name === this.wine.name);
+            this.$store.state.chart[repetitiveItemIndex].quantity -= 1;
+        },
+        deleteProduct() {   
+            const repetitiveItemIndex = this.$store.state.chart.findIndex(item => item.name === this.wine.name);
+            this.$store.state.chart.splice( repetitiveItemIndex, 1);
+        }
+    } 
 }
 </script>
 
@@ -116,6 +131,7 @@ export default {
 }
 .quantity_control_btn:disabled {
     font-weight: normal;
+    cursor: default;
 }
 
 .values_slot{
