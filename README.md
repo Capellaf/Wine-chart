@@ -30,4 +30,8 @@ A store foi criada para, além de verificar se é um dispositivo mobile, o estad
 ### Router
 Router foi utilizado para gerenciar rotas e views. Apesar deste projeto só possuir uma única view, permite-se assim a escalabilidade e fácil manutenção.
 
+### Validações e feedback
+Acrescentado um feedback de adicionado produto no carrinho quando adicionado na homepage.
+Validações de preço promocional, e não permite redução de itens no carrinho a zero, mínimo 1 ou exclusão.
+
 
