@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        chart: [],
         itemsQuantity: 0,
         width: 0
     },

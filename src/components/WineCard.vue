@@ -11,8 +11,11 @@
                 <span class="wine_promo_price">{{getWinePromoPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span><br>
                 <span class="socio_paragraph">Sócio Wine</span><br>
                 <span>
-                    <span class="monetary">R$</span>
-                    <span class="wine_member_price">{{getWineMemberPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span>
+                    <span class="total_values">
+                        R$
+                        <span class="total_integer"> {{ Math.trunc( getWineMemberPrice) }},</span>
+                        {{ getWineMemberPriceDecimal }}
+                    </span>
                 </span>
             </div>
             <button v-if="getWineAvailable" class="add_product">Adicionar Produto</button>
@@ -33,8 +36,11 @@
                 <span class="wine_promo_price">{{getWinePromoPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span><br>
                 <span class="socio_paragraph">Sócio Wine</span><br>
                 <span>
-                    <span class="monetary">R$</span>
-                    <span class="wine_member_price">{{getWineMemberPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span>
+                    <span class="total_values">
+                        R$
+                        <span class="total_integer"> {{ Math.trunc( getWineMemberPrice) }},</span>
+                        {{ getWineMemberPriceDecimal }}
+                    </span>
                 </span>
                 <br>
                 <span class="wine_no_member_price">NÃO SÓCIO R$ {{getWinePromoPrice.toLocaleString('pt-br', {minimumFractionDigits: 2})}}</span>
@@ -46,6 +52,8 @@
 </template>
 
 <script>
+import { getDecimalValue } from '../utils/formatters'
+
 export default {
     name: 'WineCard',
 
@@ -71,6 +79,10 @@ export default {
         },
         getWineMemberPrice() {
             return this.wine.priceMember;
+        },
+        getWineMemberPriceDecimal() {
+          const total = this.getWineMemberPrice;
+          return getDecimalValue(total);
         }
     }
 }
@@ -156,20 +168,19 @@ export default {
     margin-top: 15px;
     font-size: 14px;
     font-weight: bold;
-    color: #1D1D1B; 
+    color: var(--title); 
 }
 
-.wine_member_price {
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--pink);
+.total_values {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--pink);
 }
 
-.monetary {
-    font-size: 12px;
-    font-weight: bold;
-    color: var(--pink);
-    margin-right: 5px;
+.total_integer {
+  font-size: 16px;
+  margin-left: 2px;
+  margin-right: -2px;
 }
 
 .add_product {
