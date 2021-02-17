@@ -1,9 +1,15 @@
 # desafio
 
 ## Setup
+Para executar o projeto, segue o padrão original do vue.
+Crie uma pasta, via console, no diretório execute os seguintes comandos
 ```
+git clone https://github.com/Capellaf/DesafioVue
 npm install
+npm run serve
 ```
+Irá aparecer duas URLs, uma local, podendo abrir no computador em execução e outra em qualquer dispositivo conectado na mesma rede.
+Basta inserí-lo no navegador.
 
 ### Ferramentas utilizadas
 ```
