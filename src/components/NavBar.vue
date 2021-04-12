@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="navbar_container">
     <wine-box 
       :state="getOpenWineBox"
       @closeWineBox="toggleWineBox"
@@ -64,69 +64,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.container{
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: 10px;
-  max-width: 100%;
-  background-color: var(--white);
-  border-bottom: 1 solid var(--dark);
-}
-
-.navbar_menu {
-  display: flex;
-  align-items: center;
-  width: 1180px;
-  justify-content: space-between;
-}
-
-.section_navbar_menu {
-  display: flex;
-  align-items: center;
-}
-
-.menu_list > li {
-  display: inline-block;
-  padding: 10px;
-}
-
-.menu_list a:link  {
-  text-decoration: none;
-  font-family: Lato;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  color: var(--dark);
-}
-.menu_list a:hover  {
-  color: var(--green);
-}
-
-.wine_chart {
-  right: 0;
-  cursor: pointer;
-}
-
-.chart_number {
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--light);
-  color: var(--green);
-  border-radius: 50%;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 11px;
-  width: 20px;
-  height: 20px;
-  letter-spacing: normal;
-  line-height: 15px;
-  bottom: 15px;
-  margin-left: 40px;
-}
-</style>
