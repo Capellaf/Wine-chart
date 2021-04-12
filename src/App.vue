@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import "./styles/styles.css";
 import NavBar from './components/NavBar'
 
 export default {
@@ -63,17 +64,6 @@ export default {
 body {
   background-color: var(--light);
   margin: 0;
-}
-
-.main_container {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  margin-top: 50px;
-}
-
-.page {
-  max-width: 1180px;
 }
 
 </style>

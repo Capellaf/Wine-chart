@@ -62,34 +62,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-}
-
-.container_mobile {
-    max-height: 100%;
-}
-
-.banner {
-    margin-bottom: 50px;
-}
-
-.wine_div {
-    display: flex;
-    width: 1180px;
-    overflow-x: auto;
-    margin-bottom: 20px;
-}
-
-.mobile_wine_div {
-    max-width: 326px;
-}
-
-.wine_section {
-    padding: 6px;
-}
-</style>
